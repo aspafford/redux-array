@@ -8,12 +8,8 @@ const INITIAL_STATE = [
 ]
 
 const reducer = (state = INITIAL_STATE, action) => {
-  if (action.type.startsWith('counter/')) {
+  if (action.type.startsWith('slider/')) {
 
-    console.log('reducer.js', 'action', action)
-
-    // action.index = 0;
-    
     return Object.assign(
       [...state],
       { [action.index]: Object.assign({}, sliderReducer(state[action.index], action)) }

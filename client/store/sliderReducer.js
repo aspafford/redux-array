@@ -1,77 +1,35 @@
-const INCREMENT = 'counter/INCREMENT'
+const UPDATE = 'slider/UPDATE' 
 
 const update = (state, mutations) =>
   Object.assign({}, state, mutations)
 
-// export const sliderAction = () => ({
-//   type: INCREMENT
-// })
-
-
-export const sliderAction = (index) => {
-  console.log('index', index, typeof index);
+export const sliderAction = (event, index) => {
+  let value = parseInt(event.target.value)
   const thunk = (dispatch, getState) => {
-    console.log('getState', getState());
-    dispatch(sliderActionx(index))
+    dispatch(updateSlider(index, value))
   }
   return thunk
 }
 
-export const sliderActionx = (x) => {
-  console.log('X!!', x);
-  return { type: INCREMENT }
+export const updateSlider = (index, value) => {
+  return { 
+    type: UPDATE, 
+    index: index, 
+    payload: value
+  }
 }
-
-// export function sliderAction2(event) {
-
-//   // console.log('event', event);
-
-//   // let sliderValue = parseInt(event.target.value);
-
-//   // console.log('sliderval', sliderValue);
-
-//   const thunk = (dispatch, getState) => {
-
-//     // console.log('getstate', getState());
-
-//     // let change = sliderValue - getState();
-
-//     // console.log('change', change);
-//     // dispatch(updateSlider(change))
-//     dispatch(updateSlider())
-//   };
-
-//   return thunk;
-// }
 
 export const INITIAL_STATE = {
   value: 0,
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
-
-
-  console.log('sliderReducer.js', 'action', action, 'state', state);
-
-
   switch (action.type) {
-    case INCREMENT:
-      state = update(state, { value: state.value + 1 })
+    case UPDATE:
+      state = update(state, { value: state.value + (action.payload - state.value) })
       break
   }
   return state
 }
 
 export default reducer
-
-
-
-
-
-// export const updateSlider = (value) => {
-//   return {
-//     type: 'UPDATE_SLIDER',
-//     payload: { value: value }
-//   }
-// }
-
