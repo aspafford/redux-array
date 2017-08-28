@@ -8,6 +8,12 @@ export const sliderAction = (event, index) => {
   const thunk = (dispatch, getState) => {
     dispatch(updateSlider(index, value))
   }
+  thunk.meta = {
+    debounce: {
+      time: 16,
+      key: 'SLIDER_ACTION'
+    }
+  }
   return thunk
 }
 
