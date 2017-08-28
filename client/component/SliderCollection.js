@@ -20,7 +20,7 @@ const mapDispatchProperties =
 const SliderCollection = props =>
   <div className='container'>
     {props.sliders.map((value, index) =>
-      <Slider slider={value}
+      <Slider key={index} slider={value}
         {...mapDispatchProperties(index)(props.dispatch)}/>
     )}
   </div>
