@@ -1,18 +1,22 @@
-import counterReducer, { INITIAL_STATE as COUNTER_INITIAL_STATE } from './counterReducer'
+import sliderReducer, { INITIAL_STATE as SLIDER_INITIAL_STATE } from './sliderReducer' 
 
 const INITIAL_STATE = [
-  COUNTER_INITIAL_STATE,
-  COUNTER_INITIAL_STATE,
-  COUNTER_INITIAL_STATE,
-  COUNTER_INITIAL_STATE
+  SLIDER_INITIAL_STATE,
+  SLIDER_INITIAL_STATE,
+  SLIDER_INITIAL_STATE,
+  SLIDER_INITIAL_STATE
 ]
 
 const reducer = (state = INITIAL_STATE, action) => {
   if (action.type.startsWith('counter/')) {
+
+    console.log('reducer.js', 'action', action)
+
+    // action.index = 0;
     
     return Object.assign(
       [...state],
-      { [action.index]: Object.assign({}, counterReducer(state[action.index], action)) }
+      { [action.index]: Object.assign({}, sliderReducer(state[action.index], action)) }
     )
     
 //     return [
